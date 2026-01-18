@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TinyIM.ViewModels"
+             x:Class="TinyIM.Views.SettingsPage"
+             Title="设置">
+
+    <ContentPage.BindingContext>
+        <local:SettingsViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView Padding="10">
+        <VerticalStackLayout Spacing="15">
+            
+            <!-- Personal Information Section -->
+            <Label Text="个人信息" 
+                   FontSize="18" 
+                   FontAttributes="Bold"
+                   Margin="0,10,0,5"/>
+            
+            <Border StrokeShape="RoundRectangle 10"
+                   Stroke="LightGray"
+                   StrokeThickness="1"
+                   Padding="15"
+                   BackgroundColor="#F8F9FA">
+                <VerticalStackLayout Spacing="10">
+                    <Grid ColumnDefinitions="100,*" RowSpacing="10">
+                        <Label Grid.Column="0" Text="用户名称:" VerticalOptions="Center"/>
+                        <Entry Grid.Column="1" Text="{Binding UserName}" 
+                              Placeholder="请输入用户名"/>
+                    </Grid>
+                    
+                    <Grid ColumnDefinitions="100,*" RowSpacing="10">
+                        <Label Grid.Column="0" Text="设备名称:" VerticalOptions="Center"/>
+                        <Entry Grid.Column="1" Text="{Binding DeviceName}" 
+                              Placeholder="请输入设备名称"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Network Settings Section -->
+            <Label Text="网络设置" 
+                   FontSize="18" 
+                   FontAttributes="Bold"
+                   Margin="0,10,0,5"/>
+            
+            <Border StrokeShape="RoundRectangle 10"
+                   Stroke="LightGray"
+                   StrokeThickness="1"
+                   Padding="15"
+                   BackgroundColor="#F8F9FA">
+                <VerticalStackLayout Spacing="10">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Grid.Column="0" Text="自动发现" VerticalOptions="Center"/>
+                        <Switch Grid.Column="1" IsToggled="{Binding AutoDiscovery}"/>
+                    </Grid>
+                    
+                    <Grid ColumnDefinitions="100,*" RowSpacing="10">
+                        <Label Grid.Column="0" Text="发现端口:" VerticalOptions="Center"/>
+                        <Entry Grid.Column="1" Text="{Binding DiscoveryPort}" 
+                              Keyboard="Numeric"
+                              Placeholder="8888"/>
+                    </Grid>
+                    
+                    <Grid ColumnDefinitions="100,*" RowSpacing="10">
+                        <Label Grid.Column="0" Text="网络接口:" VerticalOptions="Center"/>
+                        <Picker Grid.Column="1" 
+                               Title="选择网络接口"
+                               SelectedItem="{Binding NetworkInterface}">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Auto</x:String>
+                                    <x:String>WiFi</x:String>
+                                    <x:String>Ethernet</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Storage Settings Section -->
+            <Label Text="存储设置" 
+                   FontSize="18" 
+                   FontAttributes="Bold"
+                   Margin="0,10,0,5"/>
+            
+            <Border StrokeShape="RoundRectangle 10"
+                   Stroke="LightGray"
+                   StrokeThickness="1"
+                   Padding="15"
+                   BackgroundColor="#F8F9FA">
+                <VerticalStackLayout Spacing="10">
+                    <Grid ColumnDefinitions="100,*" RowSpacing="10">
+                        <Label Grid.Column="0" Text="下载路径:" VerticalOptions="Center"/>
+                        <Label Grid.Column="1" 
+                              Text="{Binding DownloadPath}" 
+                              LineBreakMode="TailTruncation"
+                              VerticalOptions="Center"/>
+                    </Grid>
+                    
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Grid.Column="0" Text="自动清理" VerticalOptions="Center"/>
+                        <Switch Grid.Column="1" IsToggled="{Binding AutoCleanup}"/>
+                    </Grid>
+                    
+                    <Grid ColumnDefinitions="100,*" RowSpacing="10">
+                        <Label Grid.Column="0" Text="最大存储:" VerticalOptions="Center"/>
+                        <Label Grid.Column="1" 
+                              Text="{Binding MaxStorageSizeMB, StringFormat='{0} MB'}" 
+                              VerticalOptions="Center"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Save Button -->
+            <Button Text="保存设置" 
+                   Command="{Binding SaveSettingsCommand}"
+                   BackgroundColor="#512BD4"
+                   TextColor="White"
+                   Margin="0,20,0,10"
+                   HeightRequest="50"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
