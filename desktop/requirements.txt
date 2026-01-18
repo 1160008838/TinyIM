@@ -1,0 +1,22 @@
+# TinyIM Desktop Dependencies
+
+# GUI Framework
+PyQt6==6.6.1
+PyQt6-Qt6==6.6.1
+PyQt6-sip==13.6.0
+
+# Networking
+netifaces==0.11.0
+
+# Database
+# Using built-in sqlite3
+
+# Image Processing
+Pillow==10.3.0
+
+# Audio/Video (optional - for future implementation)
+# opencv-python==4.9.0.80
+# PyAudio==0.2.14
+
+# Utilities
+python-dotenv==1.0.0
