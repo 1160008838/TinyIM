@@ -99,9 +99,13 @@ public class SettingsViewModel : INotifyPropertyChanged
     private async void SaveSettings()
     {
         // TODO: Implement actual settings persistence
-        if (Application.Current?.Windows.Count > 0)
+        if (Application.Current?.Windows != null && Application.Current.Windows.Count > 0)
         {
-            await Application.Current.Windows[0].Page!.DisplayAlertAsync("成功", "设置已保存", "确定");
+            var page = Application.Current.Windows[0].Page;
+            if (page != null)
+            {
+                await page.DisplayAlertAsync("成功", "设置已保存", "确定");
+            }
         }
     }
 
