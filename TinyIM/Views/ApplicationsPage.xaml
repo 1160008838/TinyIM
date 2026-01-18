@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TinyIM.ViewModels"
+             x:Class="TinyIM.Views.ApplicationsPage"
+             Title="应用">
+
+    <ContentPage.BindingContext>
+        <local:ApplicationsViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto,*" Padding="10">
+        <!-- Header -->
+        <Label Grid.Row="0" 
+               Text="应用列表" 
+               FontSize="20" 
+               FontAttributes="Bold"
+               Margin="0,10,0,20"
+               HorizontalOptions="Center"/>
+
+        <!-- Applications Grid (4 columns) -->
+        <ScrollView Grid.Row="1">
+            <CollectionView ItemsSource="{Binding Applications}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" 
+                                    Span="4"
+                                    HorizontalItemSpacing="10"
+                                    VerticalItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="80,Auto" 
+                              Padding="5">
+                            
+                            <!-- App Icon -->
+                            <Border Grid.Row="0"
+                                   StrokeShape="RoundRectangle 15"
+                                   Stroke="LightGray"
+                                   StrokeThickness="1"
+                                   HeightRequest="80"
+                                   WidthRequest="80"
+                                   HorizontalOptions="Center">
+                                <Image Source="{Binding Icon}" 
+                                      Aspect="AspectFit"
+                                      Margin="10"/>
+                            </Border>
+
+                            <!-- App Name -->
+                            <Label Grid.Row="1"
+                                  Text="{Binding Name}"
+                                  FontSize="12"
+                                  HorizontalTextAlignment="Center"
+                                  LineBreakMode="TailTruncation"
+                                  MaxLines="2"
+                                  Margin="0,5,0,0"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </Grid>
+</ContentPage>
